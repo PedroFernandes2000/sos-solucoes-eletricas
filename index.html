@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOS Soluções Eletricas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" href="https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjgzMjkwYWNmZDk4ODE5MTllNmQxMjkzN2RhYTBlYzU6ZmlsZV8wMDAwMDAwMGU2ZDQ2MjMwYjAxZDBjMzY3ZmFmZmMxMyIsInRzIjoiNDg1NTk1IiwicCI6InB5aSIsInNpZyI6ImZhMmQ1MmI5MjgxYjhkNGY4M2FkYjUyNzczMjljNmYxMTM5NWJiMTNhMTBkOTYxMGZhZjg2YTNkMTI2ZjRkYTYiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ=="
+    type="image/png">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#000000',
+            secondary: '#FF8C00',
+            accent: '#FFA500',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-bg {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://png.pngtree.com/thumb_back/fh260/background/20230705/pngtree-d-render-of-a-golden-lightning-bolt-against-a-black-panoramic-image_3730394.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(255, 140, 0, 0.2), 0 10px 10px -5px rgba(255, 140, 0, 0.1);
+    }
+
+    .whatsapp-btn {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-primary text-gray-100 font-sans">
+  <!-- Header/Navigation -->
+  <header class="bg-primary border-b border-secondary sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img
+          src="https://chatgpt.com/backend-api/public_content/enc/eyJpZCI6Im1fNjgzMjkwYWNmZDk4ODE5MTllNmQxMjkzN2RhYTBlYzU6ZmlsZV8wMDAwMDAwMGU2ZDQ2MjMwYjAxZDBjMzY3ZmFmZmMxMyIsInRzIjoiNDg1NTk1IiwicCI6InB5aSIsInNpZyI6ImZhMmQ1MmI5MjgxYjhkNGY4M2FkYjUyNzczMjljNmYxMTM5NWJiMTNhMTBkOTYxMGZhZjg2YTNkMTI2ZjRkYTYiLCJ2IjoiMCIsImdpem1vX2lkIjpudWxsfQ=="
+          alt="Logo SOS Soluções Elétricas" class="w-10 h-10 mr-2 object-contain">
+        <h1 class="text-2xl font-bold">
+          <span class="text-secondary">S.O.S</span>
+          <span class="text-white">Soluções Eletricas</span>
+        </h1>
+      </div>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-8">
+          <li><a href="#home" class="hover:text-secondary transition">Início</a></li>
+          <li><a href="#services" class="hover:text-secondary transition">Serviços</a></li>
+          <li><a href="#about" class="hover:text-secondary transition">Sobre</a></li>
+          <li><a href="#testimonials" class="hover:text-secondary transition">Depoimentos</a></li>
+          <li><a href="#contact" class="hover:text-secondary transition">Contato</a></li>
+        </ul>
+      </nav>
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-primary border-t border-secondary">
+      <div class="container mx-auto px-4 py-2">
+        <ul class="flex flex-col space-y-3">
+          <li><a href="#home" class="block py-2 hover:text-secondary transition">Início</a></li>
+          <li><a href="#services" class="block py-2 hover:text-secondary transition">Serviços</a></li>
+          <li><a href="#about" class="block py-2 hover:text-secondary transition">Sobre</a></li>
+          <li><a href="#testimonials" class="block py-2 hover:text-secondary transition">Depoimentos</a></li>
+          <li><a href="#contact" class="block py-2 hover:text-secondary transition">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg min-h-screen flex items-center">
+    <div class="container mx-auto px-4 py-20">
+      <div class="max-w-2xl">
+        <h2 class="text-4xl md:text-6xl font-bold mb-6">
+          <span class="text-secondary">S.O.S</span>
+          <span class="text-white">Soluções Eletricas</span>
+        </h2>
+        <p class="text-xl md:text-2xl mb-8 text-gray-300">
+          Instalação, manutenção e reparos elétricos residenciais e comerciais. Atendimento rápido e garantia de
+          qualidade. Atendemos em Ubatuba e região.
+        </p>
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20solicitar%20um%20orçamento!"
+            class="whatsapp-btn bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full flex items-center justify-center transition">
+            <i class="fab fa-whatsapp text-2xl mr-2"></i>
+            Fale pelo WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          <span class="text-white">Nossos</span>
+          <span class="text-secondary"> Serviços</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-gray-300">
+          Oferecemos soluções completas em elétrica residencial e comercial, com segurança e eficiência.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="service-card bg-primary rounded-lg overflow-hidden border border-secondary transition duration-300">
+          <div class="relative w-full h-50">
+            <img
+              src="https://www.arcdesign.com.br/wp-content/uploads/2024/05/Top-10-Melhores-Quadros-de-Distribuicao-jpg.webp"
+              alt="Quadro de distribuição" class="w-full h-full object-cover">
+            <!-- Gradiente do preto pro transparente sobreposto na parte inferior -->
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-server text-secondary text-2xl mr-3"></i>
+              <h3 class="text-xl font-bold">Quadro de Distribuição</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Instalação e manutenção de quadros de distribuição elétrica, organização de circuitos e substituição de
+              disjuntores.
+            </p>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20saber%20mais%20sobre%20instalação%20de%20quadro%20de%20distribuição"
+              class="text-secondary hover:text-accent font-medium flex items-center transition">
+              Solicitar orçamento <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+
+        <!-- Service 2 -->
+        <div class="service-card bg-primary rounded-lg overflow-hidden border border-secondary transition duration-300">
+          <div class="relative w-full h-50">
+            <img src="https://segurancadynamis.com.br/wp-content/uploads/2019/06/portao_eletronico.jpg"
+              alt="Portão eletrônico" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-warehouse text-secondary text-2xl mr-3"></i>
+              <h3 class="text-xl font-bold">Portão Eletrônico</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Instalação de portões eletrônicos, motores, controles remotos e sensores de segurança para maior
+              comodidade e proteção.
+            </p>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20saber%20mais%20sobre%20instalação%20de%20portão%20eletrônico"
+              class="text-secondary hover:text-accent font-medium flex items-center transition">
+              Solicitar orçamento <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card bg-primary rounded-lg overflow-hidden border border-secondary transition duration-300">
+          <div class="relative w-full h-50">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvg-9Y3cwcK6nKWvnCsVsE5VL8bcDqqG1P8g&s"
+              alt="Ar condicionado" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-snowflake text-secondary text-2xl mr-3"></i>
+              <h3 class="text-xl font-bold">Ar Condicionado</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Instalação elétrica especializada para ar condicionado split, incluindo disjuntores dedicados e fiação
+              adequada.
+            </p>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20saber%20mais%20sobre%20instalação%20elétrica%20para%20ar%20condicionado"
+              class="text-secondary hover:text-accent font-medium flex items-center transition">
+              Solicitar orçamento <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card bg-primary rounded-lg overflow-hidden border border-secondary transition duration-300">
+          <div class="relative w-full h-50">
+            <img src="https://magnetronseguranca.com.br/wp-content/uploads/2024/07/camera.jpg"
+              alt="Câmeras de segurança" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-video text-secondary text-2xl mr-3"></i>
+              <h3 class="text-xl font-bold">Câmeras de Segurança</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Instalação de sistemas de CFTV com cabeamento estruturado, pontos de energia e configuração de DVRs.
+            </p>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20saber%20mais%20sobre%20instalação%20de%20câmeras%20de%20segurança"
+              class="text-secondary hover:text-accent font-medium flex items-center transition">
+              Solicitar orçamento <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card bg-primary rounded-lg overflow-hidden border border-secondary transition duration-300">
+          <div class="relative w-full h-50">
+            <img src="https://cdn.awsli.com.br/2616/2616201/arquivos/26e9c354-53ea-49e5-aa8b-a2ea5a532013.jpg"
+              alt="Interfone" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-phone-alt text-secondary text-2xl mr-3"></i>
+              <h3 class="text-xl font-bold">Interfone</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Instalação de sistemas de interfonia residencial e condominial, com ou sem vídeo, incluindo fiação e
+              programação.
+            </p>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20saber%20mais%20sobre%20instalação%20de%20interfone"
+              class="text-secondary hover:text-accent font-medium flex items-center transition">
+              Solicitar orçamento <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card bg-primary rounded-lg overflow-hidden border border-secondary transition duration-300">
+          <div class="relative w-full h-50">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkYnKcP6AVrWHANRPVOzLSIodzlDr3tKTU7g&s"
+              alt="Comandos elétricos" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-cogs text-secondary text-2xl mr-3"></i>
+              <h3 class="text-xl font-bold">Comandos Elétricos</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              Projeto e instalação de painéis de comando elétrico para motores, bombas e sistemas automatizados
+              residenciais.
+            </p>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20saber%20mais%20sobre%20comandos%20elétricos"
+              class="text-secondary hover:text-accent font-medium flex items-center transition">
+              Solicitar orçamento <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-primary">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row items-center">
+        <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+          <img
+            src="https://media-gru2-1.cdn.whatsapp.net/v/t61.24694-24/473401604_1140031774292982_6244193404672006611_n.jpg?ccb=11-4&oh=01_Q5Aa1gH3GCLCvHl-SKnK08F-OFfQZHwBHrA0vx7rJw020-c_9g&oe=683F92C9&_nc_sid=5e03e0&_nc_cat=107"
+            alt="Saulo Eletricista" class="rounded-lg shadow-2xl w-full">
+        </div>
+        <div class="lg:w-1/2">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            <span class="text-white">Sobre o</span>
+            <span class="text-secondary"> Saulo</span>
+          </h2>
+          <p class="text-gray-300 mb-6">
+            Com mais de 15 anos de experiência no mercado, Saulo é um eletricista altamente qualificado, especializado
+            em instalações residenciais e sistemas elétricos complexos.
+          </p>
+          <p class="text-gray-300 mb-6">
+            Formado em eletrotécnica e com diversas certificações, oferece serviços com excelência, segurança e garantia
+            de qualidade, utilizando apenas materiais de primeira linha.
+          </p>
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-secondary mb-4">Nossa Missão</h3>
+            <p class="text-gray-300">
+              Proporcionar soluções elétricas eficientes e seguras, garantindo o conforto e bem-estar dos clientes
+              através de um atendimento personalizado e transparente.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4">
+            <div class="bg-gray-800 rounded-lg p-4 flex-1 min-w-[200px]">
+              <div class="text-secondary text-3xl mb-2">
+                <i class="fas fa-medal"></i>
+              </div>
+              <h4 class="font-bold mb-1">Qualidade</h4>
+              <p class="text-gray-300 text-sm">Materiais premium e mão de obra especializada</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 flex-1 min-w-[200px]">
+              <div class="text-secondary text-3xl mb-2">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h4 class="font-bold mb-1">Segurança</h4>
+              <p class="text-gray-300 text-sm">Instalações conforme normas técnicas</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-4 flex-1 min-w-[200px]">
+              <div class="text-secondary text-3xl mb-2">
+                <i class="fas fa-clock"></i>
+              </div>
+              <h4 class="font-bold mb-1">Pontualidade</h4>
+              <p class="text-gray-300 text-sm">Compromisso com prazos acordados</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          <span class="text-white">Depoimentos de</span>
+          <span class="text-secondary"> Clientes</span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-gray-300">
+          Veja o que nossos clientes têm a dizer sobre a qualidade dos nossos serviços
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-primary p-6 rounded-lg border border-secondary">
+          <div class="flex items-center mb-4">
+            <div class="text-secondary text-2xl mr-3">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center">
+                <div class="text-yellow-400 mr-1">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-6">
+            "O Saulo instalou o portão eletrônico da minha casa e fez um trabalho impecável. Organizou toda a fiação,
+            explicou como usar e ainda deu dicas de manutenção. Recomendo muito!"
+          </p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Cliente"
+              class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold">Ana Claudia</h4>
+              <p class="text-gray-400 text-sm">Residencial - Vila Mariana</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-primary p-6 rounded-lg border border-secondary">
+          <div class="flex items-center mb-4">
+            <div class="text-secondary text-2xl mr-3">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center">
+                <div class="text-yellow-400 mr-1">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-6">
+            "Precisava urgentemente de um eletricista para resolver um problema no quadro de luz. O Saulo atendeu no
+            mesmo dia, identificou o problema e resolveu com muita competência. Excelente profissional!"
+          </p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold">Roberto Almeida</h4>
+              <p class="text-gray-400 text-sm">Comercial - Moema</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-primary p-6 rounded-lg border border-secondary">
+          <div class="flex items-center mb-4">
+            <div class="text-secondary text-2xl mr-3">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center">
+                <div class="text-yellow-400 mr-1">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-6">
+            "Contratei o Saulo para instalar câmeras de segurança e interfone no meu condomínio. Fiquei impressionado
+            com a organização do trabalho e a atenção aos detalhes. Superou todas as expectativas!"
+          </p>
+          <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente"
+              class="w-10 h-10 rounded-full mr-3">
+            <div>
+              <h4 class="font-bold">Carla Mendes</h4>
+              <p class="text-gray-400 text-sm">Condomínio - Brooklin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="bg-gray-800 p-8 h-full">
+      <h3 class="text-2xl font-bold text-secondary mb-6">Informações de Contato</h3>
+
+      <div class="flex items-center mb-8">
+        <div class="text-secondary text-2xl mr-4">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div>
+          <h4 class="font-bold mb-1">Área de Atuação</h4>
+          <p class="text-gray-300">Ubatuba e região</p>
+        </div>
+      </div>
+
+      <div class="flex items-start mb-8">
+        <div class="text-secondary text-2xl mr-4">
+          <i class="fas fa-phone-alt"></i>
+        </div>
+        <div>
+          <h4 class="font-bold mb-1">Telefone</h4>
+          <p class="text-gray-300">(12) 99785-8600</p>
+        </div>
+      </div>
+
+      <div class="flex items-start mb-8">
+        <div class="text-secondary text-2xl mr-4">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div>
+          <h4 class="font-bold mb-1">E-mail</h4>
+          <p class="text-gray-300">sauloreforma@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="flex items-start mb-8">
+        <div class="text-secondary text-2xl mr-4">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div>
+          <h4 class="font-bold mb-1">Horário de Atendimento</h4>
+          <p class="text-gray-300">Segunda a Sexta: 8h às 18h</p>
+          <p class="text-gray-300">Sábado: 8h às 12h</p>
+        </div>
+      </div>
+
+      <div class="mt-12 flex flex-col md:flex-row items-center justify-between">
+        <div>
+          <h4 class="font-bold text-secondary mb-4">Redes Sociais</h4>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="bg-gray-700 hover:bg-secondary w-12 h-12 rounded-full flex items-center justify-center transition">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="#"
+              class="bg-gray-700 hover:bg-secondary w-12 h-12 rounded-full flex items-center justify-center transition">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20solicitar%20um%20orçamento!"
+              class="bg-gray-700 hover:bg-green-500 w-12 h-12 rounded-full flex items-center justify-center transition">
+              <i class="fab fa-whatsapp text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div class="mt-6 mr-20 text-gray-400 text-center md:text-right">
+          <p>&copy; 2025 Saulo Eletricista. Todos os direitos reservados.</p>
+          <p class="mb-1">Desenvolvido por <a href="https://github.com/PedroFernandes2000">Pedro Fernandes dos
+              Santos</a></p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- Floating WhatsApp Button -->
+  <div class="fixed bottom-6 right-6 z-100">
+    <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20solicitar%20um%20orçamento!"
+      class="whatsapp-btn bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition">
+      <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+
+          // Close mobile menu if open
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
