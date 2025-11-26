@@ -550,7 +550,7 @@
 
       const formData = new FormData(form);
 
-      const resposta = await fetch("http://pedrinphp.gamer.gd/api/comentario.php", {
+      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php", {
         method: "POST",
         body: formData
       });
@@ -568,7 +568,7 @@
     async function carregarDepoimentos() {
       const carrossel = document.getElementById("carrosselDepoimentos");
 
-      const resposta = await fetch("http://pedrinphp.gamer.gd/api/comentario.php");
+      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php");
       const dados = await resposta.json();
 
       carrossel.innerHTML = "";
