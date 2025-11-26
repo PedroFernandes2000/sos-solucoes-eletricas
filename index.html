@@ -550,7 +550,7 @@
 
       const formData = new FormData(form);
 
-      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php", {
+      const resposta = await fetch("http://pedrinphp.gamer.gd/api/comentario.php", {
         method: "POST",
         body: formData
       });
@@ -568,7 +568,7 @@
     async function carregarDepoimentos() {
       const carrossel = document.getElementById("carrosselDepoimentos");
 
-      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php");
+      const resposta = await fetch("http://pedrinphp.gamer.gd/api/comentario.php");
       const dados = await resposta.json();
 
       carrossel.innerHTML = "";
@@ -586,7 +586,7 @@
         card.className = "min-w-full md:min-w-[50%] lg:min-w-[33.33%] px-4";
 
         const fotoHTML = dep.foto
-          ? `<img src="https://pedrinphp.gamer.gd/imagens/${dep.foto}" class="w-20 h-20 rounded-full object-cover border-2 border-secondary">`
+          ? `<img src="http://pedrinphp.gamer.gd/imagens/${dep.foto}" class="w-20 h-20 rounded-full object-cover border-2 border-secondary">`
           : `<div class="w-20 h-20 rounded-full bg-zinc-700"></div>`;
 
         const estrelas = "★".repeat(dep.avaliacao) + "☆".repeat(5 - dep.avaliacao);
