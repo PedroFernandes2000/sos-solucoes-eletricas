@@ -7,8 +7,7 @@
   <title>SOS Soluções Eletricas</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" href="./img/Raio de Ouro Minimalista.png"
-    type="image/png">
+  <link rel="icon" href="./img/Raio de Ouro Minimalista.png" type="image/png">
   <script>
     tailwind.config = {
       theme: {
@@ -59,9 +58,8 @@
   <header class="bg-primary border-b border-secondary sticky top-0 z-50">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <div class="flex items-center">
-        <img
-          src="./img/Raio de Ouro Minimalista.png"
-          alt="Logo SOS Soluções Elétricas" class="w-10 h-10 mr-2 object-contain">
+        <img src="./img/Raio de Ouro Minimalista.png" alt="Logo SOS Soluções Elétricas"
+          class="w-10 h-10 mr-2 object-contain">
         <h1 class="text-2xl font-bold">
           <span class="text-secondary">S.O.S</span>
           <span class="text-white">Soluções Eletricas</span>
@@ -282,9 +280,7 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row items-center">
         <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
-          <img
-            src="./img/saulo.png"
-            alt="Saulo Eletricista" class="rounded-lg shadow-2xl w-full">
+          <img src="./img/saulo.png" alt="Saulo Eletricista" class="rounded-lg shadow-2xl w-full">
         </div>
         <div class="lg:w-1/2">
           <h2 class="text-3xl md:text-4xl font-bold mb-6">
@@ -334,117 +330,38 @@
     </div>
   </section>
 
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="py-20 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-          <span class="text-white">Depoimentos de</span>
-          <span class="text-secondary"> Clientes</span>
-        </h2>
-        <p class="max-w-2xl mx-auto text-gray-300">
-          Veja o que nossos clientes têm a dizer sobre a qualidade dos nossos serviços
-        </p>
+  <section id="depoimentos" class="py-16 bg-gray-950">
+    <h2 class="text-3xl font-bold text-center text-secondary mb-8">
+      O que nossos clientes dizem:
+    </h2>
+
+    <div class="relative w-full max-w-6xl mx-auto overflow-hidden">
+      <!-- Contêiner que desliza -->
+      <div id="carrosselDepoimentos" class="flex transition-transform duration-700 ease-in-out">
+        <!-- Cards serão inseridos aqui via JS -->
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Testimonial 1 -->
-        <div class="bg-primary p-6 rounded-lg border border-secondary">
-          <div class="flex items-center mb-4">
-            <div class="text-secondary text-2xl mr-3">
-              <i class="fas fa-quote-left"></i>
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center">
-                <div class="text-yellow-400 mr-1">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-6">
-            "O Saulo instalou o portão eletrônico da minha casa e fez um trabalho impecável. Organizou toda a fiação,
-            explicou como usar e ainda deu dicas de manutenção. Recomendo muito!"
-          </p>
-          <div class="flex items-center">
-            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Cliente"
-              class="w-10 h-10 rounded-full mr-3">
-            <div>
-              <h4 class="font-bold">Ana Claudia</h4>
-              <p class="text-gray-400 text-sm">Residencial - Itaguá</p>
-            </div>
-          </div>
-        </div>
+      <!-- Botões de navegação -->
+      <button id="prevSlide"
+        class="absolute top-1/2 left-2 -translate-y-1/2 bg-zinc-800 text-white px-3 py-2 rounded-full shadow hidden md:block hover:bg-zinc-700">
+        ‹
+      </button>
 
-        <!-- Testimonial 2 -->
-        <div class="bg-primary p-6 rounded-lg border border-secondary">
-          <div class="flex items-center mb-4">
-            <div class="text-secondary text-2xl mr-3">
-              <i class="fas fa-quote-left"></i>
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center">
-                <div class="text-yellow-400 mr-1">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-6">
-            "Precisava urgentemente de um eletricista para resolver um problema no quadro de luz. O Saulo atendeu no
-            mesmo dia, identificou o problema e resolveu com muita competência. Excelente profissional!"
-          </p>
-          <div class="flex items-center">
-            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente" class="w-10 h-10 rounded-full mr-3">
-            <div>
-              <h4 class="font-bold">Roberto Almeida</h4>
-              <p class="text-gray-400 text-sm">Comercial - Praia Grande</p>
-            </div>
-          </div>
-        </div>
+      <button id="nextSlide"
+        class="absolute top-1/2 right-2 -translate-y-1/2 bg-zinc-800 text-white px-3 py-2 rounded-full shadow hidden md:block hover:bg-zinc-700">
+        ›
+      </button>
+    </div>
 
-        <!-- Testimonial 3 -->
-        <div class="bg-primary p-6 rounded-lg border border-secondary">
-          <div class="flex items-center mb-4">
-            <div class="text-secondary text-2xl mr-3">
-              <i class="fas fa-quote-left"></i>
-            </div>
-            <div class="flex-1">
-              <div class="flex items-center">
-                <div class="text-yellow-400 mr-1">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-300 mb-6">
-            "Contratei o Saulo para instalar câmeras de segurança e interfone no meu condomínio. Fiquei impressionado
-            com a organização do trabalho e a atenção aos detalhes. Superou todas as expectativas!"
-          </p>
-          <div class="flex items-center">
-            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente"
-              class="w-10 h-10 rounded-full mr-3">
-            <div>
-              <h4 class="font-bold">Carla Mendes</h4>
-              <p class="text-gray-400 text-sm">Condomínio - Enseada</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="text-center mt-10">
+      <button id="btn-depoimento"
+        class="bg-secondary hover:bg-accent text-white font-bold py-3 px-6 rounded-full transition">
+        Deixar meu depoimento
+      </button>
     </div>
   </section>
+
+
 
   <!-- Contact Section -->
   <section id="contact">
@@ -519,6 +436,64 @@
     </div>
     </div>
   </section>
+  <!-- Popup -->
+  <div id="popup" class="fixed inset-0 bg-black bg-opacity-60 hidden
+     flex justify-center items-center z-50">
+    <div class="bg-gray-900 p-8 rounded-xl w-11/12 max-w-lg relative">
+
+      <!-- Botão fechar -->
+      <button id="fecharPopup" class="absolute top-3 right-3 text-gray-300 hover:text-white">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+
+      <h2 class="text-2xl font-bold mb-6 text-secondary text-center">Deixar Depoimento</h2>
+
+      <form id="formDepoimento" method="POST" enctype="multipart/form-data">
+        <label class="block mb-3">
+          <span class="text-gray-300">Avaliação:</span>
+
+          <div id="estrelasSelect" class="flex gap-1 text-3xl cursor-pointer mt-1">
+            <span data-value="1" class="estrela text-gray-500">★</span>
+            <span data-value="2" class="estrela text-gray-500">★</span>
+            <span data-value="3" class="estrela text-gray-500">★</span>
+            <span data-value="4" class="estrela text-gray-500">★</span>
+            <span data-value="5" class="estrela text-gray-500">★</span>
+          </div>
+
+          <!-- Valor real enviado -->
+          <input type="hidden" name="avaliacao" id="avaliacaoReal" value="0">
+        </label>
+
+
+        <label class="block mb-3">
+          <span class="text-gray-300">Depoimento:</span>
+          <textarea name="descricao" rows="4" class="w-full mt-1 p-2 rounded bg-gray-800 text-gray-200"
+            required></textarea>
+        </label>
+
+        <label class="block mb-3">
+          <span class="text-gray-300">Seu nome:</span>
+          <input type="text" name="nome" class="w-full mt-1 p-2 rounded bg-gray-800 text-gray-200" required>
+        </label>
+
+        <label class="block mb-3">
+          <span class="text-gray-300">E-mail:</span>
+          <input type="email" name="email" class="w-full mt-1 p-2 rounded bg-gray-800 text-gray-200" required>
+        </label>
+
+        <label class="block mb-4">
+          <span class="text-gray-300">Foto (opcional):</span>
+          <input type="file" name="foto" accept="image/*" class="mt-1 text-gray-300">
+        </label>
+
+        <button type="submit" class="w-full bg-secondary hover:bg-accent text-white py-3 rounded font-bold transition">
+          Enviar Depoimento
+        </button>
+      </form>
+
+    </div>
+  </div>
+
 
 
   <!-- Floating WhatsApp Button -->
@@ -533,6 +508,7 @@
     // Mobile menu toggle
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    carregarDepoimentos();
 
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
@@ -559,7 +535,148 @@
         }
       });
     });
+
+    const popup = document.getElementById("popup");
+    const btn = document.getElementById("btn-depoimento");
+    const fechar = document.getElementById("fecharPopup");
+    const form = document.getElementById("formDepoimento");
+
+    btn.onclick = () => popup.classList.remove("hidden");
+    fechar.onclick = () => popup.classList.add("hidden");
+    popup.onclick = e => { if (e.target === popup) popup.classList.add("hidden"); };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php", {
+        method: "POST",
+        body: formData
+      });
+
+      const json = await resposta.json();
+
+      alert(json.mensagem || "Depoimento enviado!");
+      carregarDepoimentos();
+
+      popup.classList.add("hidden");
+      form.reset();
+    });
+
+
+    async function carregarDepoimentos() {
+      const carrossel = document.getElementById("carrosselDepoimentos");
+
+      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php");
+      const dados = await resposta.json();
+
+      carrossel.innerHTML = "";
+
+      if (!dados.length) {
+        carrossel.innerHTML = `
+            <p class="text-center text-gray-400 w-full py-20">
+                Nenhum depoimento ainda. Seja o primeiro! 🌱
+            </p>`;
+        return;
+      }
+
+      dados.forEach(dep => {
+        const card = document.createElement("div");
+        card.className = "min-w-full md:min-w-[50%] lg:min-w-[33.33%] px-4";
+
+        const fotoHTML = dep.foto
+          ? `<img src="https://pedrinphp.gamer.gd/imagens/${dep.foto}" class="w-20 h-20 rounded-full object-cover border-2 border-secondary">`
+          : `<div class="w-20 h-20 rounded-full bg-zinc-700"></div>`;
+
+        const estrelas = "★".repeat(dep.avaliacao) + "☆".repeat(5 - dep.avaliacao);
+
+        card.innerHTML = `
+            <div class="bg-zinc-900 rounded-xl p-6 shadow-lg border border-zinc-700">
+                <div class="flex gap-4 items-start">
+                    ${fotoHTML}
+                    <div>
+                        <h3 class="text-lg font-semibold text-secondary">${dep.nome}</h3>
+                        <p class="text-gray-400 text-sm">${dep.email}</p>
+                        <p class="text-yellow-400 mt-1">${estrelas}</p>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-center mt-6 italic">"${dep.descricao}"</p>
+            </div>
+        `;
+
+        carrossel.appendChild(card);
+      });
+
+      iniciarCarrossel(dados.length);
+    }
+
+
+
+
+
+    const estrelas = document.querySelectorAll(".estrela");
+    const inputAvaliacao = document.getElementById("avaliacaoReal");
+
+    estrelas.forEach(estrela => {
+      estrela.addEventListener("click", () => {
+        const valor = estrela.getAttribute("data-value");
+        inputAvaliacao.value = valor;
+
+        estrelas.forEach(e => {
+          e.classList.remove("text-yellow-400");
+          e.classList.add("text-gray-500");
+          if (e.getAttribute("data-value") <= valor) {
+            e.classList.remove("text-gray-500");
+            e.classList.add("text-yellow-400");
+          }
+        });
+      });
+    });
+
+
+    let posicaoCarrossel = 0;
+
+    function iniciarCarrossel(qtd) {
+      const carrossel = document.getElementById("carrosselDepoimentos");
+      const prev = document.getElementById("prevSlide");
+      const next = document.getElementById("nextSlide");
+
+      if (qtd <= 3) {
+        prev.classList.add("hidden");
+        next.classList.add("hidden");
+        return;
+      }
+
+      prev.classList.remove("hidden");
+      next.classList.remove("hidden");
+
+      const slidesVisiveis = 3;
+      const totalSlides = qtd;
+      const larguraSlide = carrossel.children[0].offsetWidth;
+
+      function atualizar() {
+        carrossel.style.transform = `translateX(-${posicaoCarrossel * larguraSlide}px)`;
+      }
+
+      next.onclick = () => {
+        posicaoCarrossel = (posicaoCarrossel + 1) % totalSlides;
+        atualizar();
+      }
+
+      prev.onclick = () => {
+        posicaoCarrossel = (posicaoCarrossel - 1 + totalSlides) % totalSlides;
+        atualizar();
+      }
+
+      // Carrossel automático
+      setInterval(() => {
+        next.click();
+      }, 4000);
+    }
+
   </script>
+
 </body>
 
 </html>
