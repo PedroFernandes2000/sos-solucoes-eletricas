@@ -414,19 +414,24 @@
           <h4 class="font-bold text-secondary mb-4">Redes Sociais</h4>
           <div class="flex space-x-4">
             <a href="https://www.facebook.com/saulo.santos.895954?rdid=stc5RcgdTlhbfWjz&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1Ds22TSx8M%2F#"
-              class="bg-gray-700 hover:bg-secondary w-12 h-12 rounded-full flex items-center justify-center transition">
+              class="bg-gray-700 hover:bg-secondary w-12 h-12 rounded-full flex items-center justify-center transition"
+              target="_blank" rel="noopener">
               <i class="fab fa-facebook-f text-xl"></i>
             </a>
             <a href="https://www.instagram.com/s.o.s_solucoes_eletricas/"
-              class="bg-gray-700 hover:bg-secondary w-12 h-12 rounded-full flex items-center justify-center transition">
+              class="bg-gray-700 hover:bg-secondary w-12 h-12 rounded-full flex items-center justify-center transition"
+              target="_blank" rel="noopener">
               <i class="fab fa-instagram text-xl"></i>
             </a>
             <a href="https://wa.me/5512997858600?text=Olá%20Saulo,%20gostaria%20de%20solicitar%20um%20orçamento!"
-              class="bg-gray-700 hover:bg-green-500 w-12 h-12 rounded-full flex items-center justify-center transition">
+              class="bg-gray-700 hover:bg-green-500 w-12 h-12 rounded-full flex items-center justify-center transition"
+              target="_blank" rel="noopener">
               <i class="fab fa-whatsapp text-xl"></i>
             </a>
           </div>
         </div>
+
+
         <div class="mt-6 mr-20 text-gray-400 text-center md:text-right">
           <p>&copy; 2025 Saulo Eletricista. Todos os direitos reservados.</p>
           <p class="mb-1">Desenvolvido por <a href="https://github.com/PedroFernandes2000">Pedro Fernandes dos
@@ -448,10 +453,11 @@
 
       <h2 class="text-2xl font-bold mb-6 text-secondary text-center">Deixar Depoimento</h2>
 
-      <form id="formDepoimento" method="POST" enctype="multipart/form-data" action="https://pedrinphp.gamer.gd/api/comentario.php">
+      <form id="formDepoimento" enctype="multipart/form-data">
+        <!-- REMOVA action e method do formulário, o JavaScript vai cuidar disso -->
+
         <label class="block mb-3">
           <span class="text-gray-300">Avaliação:</span>
-
           <div id="estrelasSelect" class="flex gap-1 text-3xl cursor-pointer mt-1">
             <span data-value="1" class="estrela text-gray-500">★</span>
             <span data-value="2" class="estrela text-gray-500">★</span>
@@ -459,11 +465,8 @@
             <span data-value="4" class="estrela text-gray-500">★</span>
             <span data-value="5" class="estrela text-gray-500">★</span>
           </div>
-
-          <!-- Valor real enviado -->
-          <input type="hidden" name="avaliacao" id="avaliacaoReal" value="0">
+          <input type="hidden" name="avaliacao" id="avaliacaoReal" value="0" required>
         </label>
-
 
         <label class="block mb-3">
           <span class="text-gray-300">Depoimento:</span>
@@ -548,72 +551,183 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const formData = new FormData(form);
+      // Validar avaliação
+      const avaliacao = parseInt(inputAvaliacao.value);
+      if (avaliacao === 0 || isNaN(avaliacao)) {
+        alert("Por favor, selecione uma avaliação com as estrelas!");
+        return;
+      }
 
-      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php", {
-        method: "POST",
-        body: formData
-      });
+      // Coletar dados do formulário
+      const formData = new FormData();
+      formData.append('avaliacao', avaliacao);
+      formData.append('descricao', form.descricao.value);
+      formData.append('nome', form.nome.value);
+      formData.append('email', form.email.value);
 
-      const json = await resposta.json();
+      // Adicionar arquivo se existir
+      const fotoInput = form.foto;
+      if (fotoInput.files[0]) {
+        formData.append('foto', fotoInput.files[0]);
+      }
 
-      alert(json.mensagem || "Depoimento enviado!");
-      carregarDepoimentos();
+      try {
+        // Mostrar loading
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = "Enviando...";
+        submitBtn.disabled = true;
 
-      popup.classList.add("hidden");
-      form.reset();
+        // Enviar via Fetch API
+        const response = await fetch("https://pedrinphp.gamer.gd/api/comentario.php", {
+          method: "POST",
+          body: formData
+          // NÃO definir Content-Type, o browser faz automaticamente para FormData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.erro || "Erro ao enviar depoimento");
+        }
+
+        alert("Depoimento enviado com sucesso!");
+
+        // Recarregar depoimentos e resetar formulário
+        await carregarDepoimentos();
+        form.reset();
+
+        // Resetar estrelas
+        estrelas.forEach(estrela => {
+          estrela.classList.remove("text-yellow-400");
+          estrela.classList.add("text-gray-500");
+        });
+        inputAvaliacao.value = "0";
+
+        popup.classList.add("hidden");
+
+      } catch (error) {
+        console.error("Erro ao enviar depoimento:", error);
+        alert("Erro ao enviar depoimento: " + error.message);
+      } finally {
+        // Restaurar botão
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.textContent = "Enviar Depoimento";
+        submitBtn.disabled = false;
+      }
     });
-
 
     async function carregarDepoimentos() {
       const carrossel = document.getElementById("carrosselDepoimentos");
 
-      const resposta = await fetch("https://pedrinphp.gamer.gd/api/comentario.php");
-      const dados = await resposta.json();
+      try {
+        const resp = await fetch("https://pedrinphp.gamer.gd/api/comentario.php");
 
-      carrossel.innerHTML = "";
+        if (!resp.ok) {
+          throw new Error("Erro ao buscar depoimentos");
+        }
 
-      if (!dados.length) {
-        carrossel.innerHTML = `
-            <p class="text-center text-gray-400 w-full py-20">
-                Nenhum depoimento ainda. Seja o primeiro! 🌱
-            </p>`;
-        return;
-      }
+        const dados = await resp.json();
+        carrossel.innerHTML = "";
 
-      dados.forEach(dep => {
-        const card = document.createElement("div");
-        card.className = "min-w-full md:min-w-[50%] lg:min-w-[33.33%] px-4";
+        if (!Array.isArray(dados) || dados.length === 0) {
+          carrossel.innerHTML = `
+                <p class="text-center text-gray-400 w-full py-20">
+                    Nenhum depoimento ainda. Seja o primeiro! 🌱
+                </p>`;
+          return;
+        }
 
-        const fotoHTML = dep.foto
-          ? `<img src="https://pedrinphp.gamer.gd/imagens/${dep.foto}" class="w-20 h-20 rounded-full object-cover border-2 border-secondary">`
-          : `<div class="w-20 h-20 rounded-full bg-zinc-700"></div>`;
+        dados.forEach(dep => {
+          const card = document.createElement("div");
+          card.className = "min-w-full md:min-w-[50%] lg:min-w-[33.33%] px-4";
 
-        const estrelas = "★".repeat(dep.avaliacao) + "☆".repeat(5 - dep.avaliacao);
-
-        card.innerHTML = `
-            <div class="bg-zinc-900 rounded-xl p-6 shadow-lg border border-zinc-700">
-                <div class="flex gap-4 items-start">
-                    ${fotoHTML}
-                    <div>
-                        <h3 class="text-lg font-semibold text-secondary">${dep.nome}</h3>
-                        <p class="text-gray-400 text-sm">${dep.email}</p>
-                        <p class="text-yellow-400 mt-1">${estrelas}</p>
-                    </div>
+          // -----------------------------
+          // CORREÇÃO: Tratamento da imagem binária
+          // -----------------------------
+          let fotoHTML = `
+                <div class="w-20 h-20 rounded-full bg-zinc-700 flex items-center justify-center">
+                  <span class="text-gray-400 text-sm">Sem foto</span>
                 </div>
-                <p class="text-gray-300 text-center mt-6 italic">"${dep.descricao}"</p>
-            </div>
-        `;
+            `;
 
-        carrossel.appendChild(card);
-      });
+          // Verifica se existe dado binário da imagem
+          if (dep.foto_bin) {
+            try {
+              // Se já estiver em base64, usa diretamente
+              if (typeof dep.foto_bin === 'string' && dep.foto_bin.startsWith('data:')) {
+                fotoHTML = `
+                  <img src="${dep.foto_bin}"
+                      class="w-20 h-20 rounded-full object-cover border-2 border-secondary"
+                      alt="Foto de ${dep.nome}">
+                `;
+              }
+              // Se for binário puro, converte para base64
+              else if (typeof dep.foto_bin === 'string') {
+                // Assume que é base64 sem o prefixo data URL
+                const tipo = dep.foto_tipo || "image/jpeg";
+                fotoHTML = `
+                  <img src="data:${tipo};base64,${dep.foto_bin}"
+                      class="w-20 h-20 rounded-full object-cover border-2 border-secondary"
+                      alt="Foto de ${dep.nome}">
+                `;
+              }
+              // Se for array buffer ou blob (dependendo do seu backend)
+              else if (dep.foto_bin instanceof ArrayBuffer || dep.foto_bin.type) {
+                const blob = new Blob([dep.foto_bin], { type: dep.foto_tipo || 'image/jpeg' });
+                const url = URL.createObjectURL(blob);
+                fotoHTML = `
+                  <img src="${url}"
+                      class="w-20 h-20 rounded-full object-cover border-2 border-secondary"
+                      alt="Foto de ${dep.nome}">
+                `;
+              }
+            } catch (error) {
+              console.error('Erro ao processar imagem:', error);
+              // Fallback para imagem padrão em caso de erro
+              fotoHTML = `
+                <div class="w-20 h-20 rounded-full bg-zinc-700 flex items-center justify-center">
+                  <span class="text-gray-400 text-xs">Erro na imagem</span>
+                </div>
+              `;
+            }
+          }
 
-      iniciarCarrossel(dados.length);
+          // ESTRELAS
+          const avaliacao = parseInt(dep.avaliacao) || 0;
+          const estrelas = "★".repeat(avaliacao) + "☆".repeat(5 - avaliacao);
+
+          card.innerHTML = `
+                <div class="bg-zinc-900 rounded-xl p-6 shadow-lg border border-zinc-700">
+                    <div class="flex gap-4 items-start">
+                        ${fotoHTML}
+                        <div>
+                            <h3 class="text-lg font-semibold text-secondary">${dep.nome}</h3>
+                            <p class="text-gray-400 text-sm">${dep.email ?? ""}</p>
+                            <p class="text-yellow-400 mt-1">${estrelas}</p>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-300 text-center mt-6 italic">
+                        "${dep.descricao}"
+                    </p>
+                </div>
+            `;
+
+          carrossel.appendChild(card);
+        });
+
+        iniciarCarrossel(dados.length);
+
+      } catch (e) {
+        console.error(e);
+        carrossel.innerHTML = `
+            <p class="text-center text-red-500 w-full py-20">
+                Erro ao carregar depoimentos. 😢<br>
+                Tente novamente mais tarde.
+            </p>`;
+      }
     }
-
-
-
-
 
     const estrelas = document.querySelectorAll(".estrela");
     const inputAvaliacao = document.getElementById("avaliacaoReal");
@@ -634,7 +748,6 @@
       });
     });
 
-
     let posicaoCarrossel = 0;
 
     function iniciarCarrossel(qtd) {
@@ -653,7 +766,7 @@
 
       const slidesVisiveis = 3;
       const totalSlides = qtd;
-      const larguraSlide = carrossel.children[0].offsetWidth;
+      const larguraSlide = carrossel.children[0]?.offsetWidth || 300;
 
       function atualizar() {
         carrossel.style.transform = `translateX(-${posicaoCarrossel * larguraSlide}px)`;
@@ -674,7 +787,6 @@
         next.click();
       }, 4000);
     }
-
   </script>
 
 </body>
