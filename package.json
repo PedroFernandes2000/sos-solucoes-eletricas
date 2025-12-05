@@ -1,0 +1,26 @@
+{
+  "name": "sos-solucoes-eletricas",
+  "version": "1.0.0",
+  "description": "SOS Soluções Elétricas é um site moderno e responsivo para uma empresa prestadora de serviços elétricos em Ubatuba e região. O projeto oferece uma plataforma completa para apresentar serviços, gerar contato via WhatsApp e coletar depoimentos de clientes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroFernandes2000/sos-solucoes-eletricas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/PedroFernandes2000/sos-solucoes-eletricas/issues"
+  },
+  "homepage": "https://github.com/PedroFernandes2000/sos-solucoes-eletricas#readme",
+  "dependencies": {
+    "busboy": "^1.6.0",
+    "express": "^5.2.1",
+    "sqlite3": "^5.1.7"
+  }
+}
